@@ -12,7 +12,16 @@ url="$1"
 output="out"
 format="mp4"
 video="$output.$format"
+gif="$output.gif"
+
+if [ -f "$video" ]; then
+  echo "File already exists at '$video'"
+  exit 1
+elif [ -f "$gif" ]; then
+  echo "File already exists at '$gif'"
+  exit 1
+fi
 
 youtube-dl --recode-video "$format" --output "$video" "$url"
-ffmpeg -i "$video" -f gif - | gifsicle > "$output.gif"
+ffmpeg -i "$video" -f gif - | gifsicle > "$gif"
 rm -f "$video"

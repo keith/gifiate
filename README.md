@@ -6,7 +6,7 @@ Create a gif from a video downloaded using
 ## Usage
 
 ```sh
-$ gifiate https://pbs.twimg.com/tweet_video/CWg7B8GWcAADF5Y.mp4
+$ gifiate URL
 ```
 
 ## Installation
