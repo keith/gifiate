@@ -1,0 +1,18 @@
+#!/bin/sh
+
+set -e
+set -o pipefail
+
+if [ "$#" -ne 1 ]; then
+  echo "Usage: gifiate URL"
+  exit 1
+fi
+
+url="$1"
+output="out"
+format="mp4"
+video="$output.$format"
+
+youtube-dl --recode-video "$format" --output "$video" "$url"
+ffmpeg -i "$video" -f gif - | gifsicle > "$output.gif"
+rm -f "$video"
